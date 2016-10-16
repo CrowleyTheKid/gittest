@@ -1,0 +1,112 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>MiniTaschenrechner</title>
+  <script>
+
+  function Prueft(Eingabe) {
+    var laesst_nur_das = "0123456789[]()-+*%/.";
+      for (var i = 0; i < Eingabe.length; i++)
+        if (laesst_nur_das.indexOf(Eingabe.charAt(i)) < 0)
+          return false;
+          return true;
+  }
+
+
+
+  function Mathfunktion(Mathf) {
+    if (Prueft(window.document.Rechner.Display.value)){
+      if (Mathf == "sqrt") {
+        var save = 0;
+        save = eval(window.document.Rechner.Display.value);
+        window.document.Rechner.Display.value = Math.sqrt(save);
+      }
+      if (Mathf == "pow") {
+        var save = 0;
+        save = eval(window.document.Rechner.Display.value);
+        window.document.Rechner.Display.value = save * save;
+      }
+      if (Mathf == "ln") {
+        var save = 0;
+        save = eval(window.document.Rechner.Display.value);
+        window.document.Rechner.Display.value = Math.log(save);
+      }
+    }
+    else window.document.rechner.Display.value = 0
+  }
+
+  function Ausgabe() {
+    var save = 0;
+    if (Prueft(window.document.Rechner.Display.value))
+      save = eval(window.document.Rechner.Display.value);
+      window.document.Rechner.Display.value = save;
+  }
+
+  function Add(Zeichen) {
+    window.document.Rechner.Display.value = window.document.Rechner.Display.value + Zeichen;
+  }
+
+  </script>
+</head>
+
+<style>
+  body {
+    width: 30em;
+    margin: 30px auto;
+  }
+  form {
+    text-align: center;
+    padding: 1em 0;
+    background: green;
+    border-radius: 1.5em;
+    box-shadow: inset 5px black;
+  }
+  output {
+    display: block;
+    height: 1.5em;
+    background: grey;
+    text-align :right;
+    font-size: 100%;
+    padding-right: 5%;
+    margin: 5px 9%;
+  }
+  fieldset {
+    border: none;
+    margin: 0 auto;
+    padding-bottom: 0;
+  }
+  input {
+    width: 18%;
+    margin: 5px 2%;
+  }
+</style>
+
+<body>
+  <h1 align="center">MiniRechner</h1>
+  <form name="Rechner" action="" onsubmit="Ausgabe();return false;">
+    <output name="Display" id="Display"></output>
+    <fieldset>
+       <input type="button" value=" 7 " onclick="Add('7')">
+       <input type="button" value=" 8 " onclick="Add('8')">
+       <input type="button" value=" 9 " onclick="Add('9')">
+       <input type="button" value=" + " onclick="Add('+')">
+       <input type="button" value=" 4 " onclick="Add('4')">
+       <input type="button" value=" 5 " onclick="Add('5')">
+       <input type="button" value=" 6 " onclick="Add('6')">
+       <input type="button" value=" - " onclick="Add('-')">
+       <input type="button" value=" 1 " onclick="Add('1')">
+       <input type="button" value=" 2 " onclick="Add('2')">
+       <input type="button" value=" 3 " onclick="Add('3')">
+       <input type="button" value=" * " onclick="Add('*')">
+       <input type="button" value=" 0 " onclick="Add('0')">
+       <input type="button" value=" . " onclick="Add('.')">
+       <input type="button" value=" = " onclick="Ausgabe()">
+       <input type="button" value=" / " onclick="Add('/')">
+       <input type="button" value="sqrt " onclick="Mathfunktion('sqrt')">
+       <input type="button" value=" pow " onclick="Mathfunktion('pow')">
+       <input type="button" value=" ln " onclick="Mathfunktion('ln')">
+       <input type="reset"  value=" Clear ">
+    </fieldset>
+  </form>
+</body>
+</html>
